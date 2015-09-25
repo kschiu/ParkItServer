@@ -1,0 +1,9 @@
+{
+	"name": "ParkIt-Server",
+    "main": "server.js",
+    "dependencies": {
+        "express": "~4.10.1",
+        "mongoose": "~3.8.8",
+        "body-parser": "~1.4.0"
+    }
+}
