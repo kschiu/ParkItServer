@@ -1,6 +1,6 @@
 var mongoose     = require('mongoose');
 
-var ListingSchema  = new mongoose.Schema({
+var ListingSchema = new mongoose.Schema({
     user : {
     	type : mongoose.Schema.ObjectId,
     	required : true
@@ -20,7 +20,10 @@ var ListingSchema  = new mongoose.Schema({
     endDateTime : {
     	type : Date,
     	required : true
-    }
+    },
+    pictures : [{
+    	name : String
+    }]
 });
 
 module.exports = mongoose.model('Listing', ListingSchema);

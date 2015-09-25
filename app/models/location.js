@@ -1,6 +1,6 @@
 var mongoose     = require('mongoose');
 
-var LocationSchema  = new mongoose.Schema({
+var LocationSchema = new mongoose.Schema({
     address : {
         type : String,
         required : true
