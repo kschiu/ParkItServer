@@ -26,7 +26,7 @@ var UserSchema   = new mongoose.Schema({
     	expiration_year : {
     		type : Number,
     		required : true
-    	}
+    	},
     	holder_name : {
     		type : String,
     		required : true
