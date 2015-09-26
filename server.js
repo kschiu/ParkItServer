@@ -67,6 +67,25 @@ router.route('/locations')
 		});
 	});
 
+router.route('/locations/:location_id')
+	.get(function(req,res){
+		Location.findById(req.params.location_id, function(err,loc){
+			if (err)
+				res.send(err);
+			res.json(loc);
+		});
+	})
+
+	.delete(function(req,res){
+		Location.remove({
+			_id : req.params.location_id
+		}, function(err, bear){
+			if (err)
+				req.send(err);
+			res.json({message: "Location deleted"});
+		});
+	});
+
 
 // REGISTER OUR ROUTES
 app.use('/', router);
