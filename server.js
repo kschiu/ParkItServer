@@ -154,6 +154,35 @@ router.route('/listings/:listing_id')
 	});
 
 
+//==============================================================================
+// Purchase routes
+// =============================================================================
+router.route('/purchases')
+	.get(function(req,res){
+		Purchase.find(function(err,purchase){
+			if (err)
+				res.send(err);
+			req.json(purchase);
+		});
+	})
+
+	.post(function(req,res){
+		var purchase = new Purchase();
+		purchase.buyer = req.body.buyer;
+		purchase.seller = req.body.seller;
+		purchase.listing = req.body.listing;
+		purchase.date = req.body.date;
+	});
+
+router.route('/purchases/:purchase_id')
+	.get(function(req, res){
+		Purchase.findById(req.params.purchase_id, function(err, purchase){
+			if (err)
+				res.send(err);
+			res.json(purchase);
+		});
+	})
+
 // REGISTER OUR ROUTES
 app.use('/', router);
 
