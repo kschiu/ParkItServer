@@ -39,6 +39,32 @@ router.get('/', function(req, res) {
     res.json({ message: 'Root of the API'});   
 });
 
+//==============================================================================
+// User Routes
+// =============================================================================
+router.route('/users')
+	.post(function(req,res){
+		var user = new User();
+		user.username = req.body.username;
+		user.password = req.body.password;
+		user.email = req.body.email;
+		user.payment = req.body.payment;
+		user.pictures = req.body.pictures; 
+	});
+
+router.route('/users/:user_id')
+	.get(function(req,res){
+		User.findById(req.params.user_id, function(err,u){
+			if (err)
+				res.send(err);
+			res.json(u);
+		});
+	});
+
+
+//==============================================================================
+// Location Routes
+// =============================================================================
 router.route('/locations')
 
 	.get(function(req,res){
@@ -85,7 +111,6 @@ router.route('/locations/:location_id')
 			res.json({message: "Location deleted"});
 		});
 	});
-
 
 // REGISTER OUR ROUTES
 app.use('/', router);
