@@ -105,12 +105,54 @@ router.route('/locations/:location_id')
 	.delete(function(req,res){
 		Location.remove({
 			_id : req.params.location_id
-		}, function(err, bear){
+		}, function(err, loc){
 			if (err)
 				req.send(err);
 			res.json({message: "Location deleted"});
 		});
 	});
+
+//==============================================================================
+// Listing routes
+// =============================================================================
+router.route('/listings')
+	.get(function(req,res){
+		Listing.find(function(err,listing){
+			if (err)
+				res.send(err);
+			req.json(listing);
+		});
+	})
+
+	.post(function(req,res){
+		var listing = new Listing();
+		listing.user = req.body.user;
+		listing.location = req.body.location;
+		listing.price = req.body.price;
+		listing.startDateTime = req.body.startDateTime;
+		listing.endDateTime = req.body.endDateTime;
+		listing.pictures = req.body.pictures;
+	});
+
+router.route('/listings/:listing_id')
+	.get(function(req,res){
+		Listing.findById(req.params.listing_id, function(err,listing){
+			if (err)
+				res.send(err);
+			res.json(listing);
+		});
+	})
+
+	.delete(function(req,res){
+		Listing.remove({
+			_id : req.params.listing_id
+		}, function(err, listing){
+			if (err)
+				req.send(err);
+			res.json({message: "Listing deleted"});
+		});
+	});
+
 
 // REGISTER OUR ROUTES
 app.use('/', router);
