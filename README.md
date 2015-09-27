@@ -18,6 +18,7 @@ curl localhost:8080/locations
 `
 curl localhost:8080/users
 `
+`
 curl localhost:8080/purchases
 `
 `
