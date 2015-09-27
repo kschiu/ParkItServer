@@ -14,15 +14,19 @@ In a separate terminal window, test API endpoints by sending cURL requests:
 
 `
 curl localhost:8080/locations
+`
+`
 curl localhost:8080/users
+`
 curl localhost:8080/purchases
+`
+`
 curl localhost:8080/listings
 `
 
 Create an object by sending a cURL POST request with parameters. For example:
 
 `
-
 curl -X POST -i -H "Content-type: application/json" localhost:8080/locations -d '
 {
 	"address" : "5000 Forbes Avenue",
@@ -32,10 +36,9 @@ curl -X POST -i -H "Content-type: application/json" localhost:8080/locations -d 
 	"indoor" : true,
 	"num_cars" : 1,
 	"reviews" : {"rating" : 5, "description" : "Best parking in CMU"}
-}
-'
-
+}'
 ` 
+
 To create a different object, change the ending of the url from locations to users, purchases or listings and supply the appropriate parameters as specified in app/models in the above cURL request.
 
 To connect to the DB:
