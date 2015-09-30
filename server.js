@@ -50,7 +50,13 @@ router.route('/users')
 		user.email = req.body.email;
 		user.payment = req.body.payment;
 		user.pictures = req.body.pictures; 
-	});
+
+		user.save(function(err){
+			if (err)
+				res.send(err);
+			res.json({message: 'User created.'});
+		});
+	})
 
 router.route('/users/:user_id')
 	.get(function(req,res){
