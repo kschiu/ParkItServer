@@ -56,7 +56,7 @@ router.route('/users')
 				res.send(err);
 			res.json({message: 'User created.'});
 		});
-	})
+	});
 
 router.route('/users/:user_id')
 	.get(function(req,res){
@@ -67,12 +67,10 @@ router.route('/users/:user_id')
 		});
 	});
 
-
 //==============================================================================
 // Location Routes
 // =============================================================================
 router.route('/locations')
-
 	.get(function(req,res){
 		Location.find(function(err, loc){
 			if (err)
@@ -138,6 +136,12 @@ router.route('/listings')
 		listing.startDateTime = req.body.startDateTime;
 		listing.endDateTime = req.body.endDateTime;
 		listing.pictures = req.body.pictures;
+
+		listing.save(function(err){
+			if (err)
+				res.send(err);
+			res.json({message: 'Listing created.'});
+		});
 	});
 
 router.route('/listings/:listing_id')
@@ -177,7 +181,14 @@ router.route('/purchases')
 		purchase.buyer = req.body.buyer;
 		purchase.seller = req.body.seller;
 		purchase.listing = req.body.listing;
+		purchase.cars = req.body.cars;
 		purchase.date = req.body.date;
+
+		purchase.save(function(err){
+			if (err)
+				res.send(err);
+			res.json({message: 'Purchase created.'});
+		});
 	});
 
 router.route('/purchases/:purchase_id')
@@ -187,7 +198,7 @@ router.route('/purchases/:purchase_id')
 				res.send(err);
 			res.json(purchase);
 		});
-	})
+	});
 
 // REGISTER OUR ROUTES
 app.use('/', router);

@@ -13,6 +13,20 @@ var PurchaseSchema = new mongoose.Schema({
         type : mongoose.Schema.ObjectId,
         required : true
     },
+    cars : [{
+        make : {
+            type : String, 
+            required : true 
+        },
+        model : {
+            type : String, 
+            required : true 
+        },
+        license : {
+            type : String, 
+            required : true 
+        }
+    }],
     date : {
         type : Date,
         required : true
