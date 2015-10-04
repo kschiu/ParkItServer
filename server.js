@@ -124,7 +124,7 @@ router.route('/listings')
 		Listing.find(function(err,listing){
 			if (err)
 				res.send(err);
-			req.json(listing);
+			res.json(listing);
 		});
 	})
 
@@ -172,7 +172,7 @@ router.route('/purchases')
 		Purchase.find(function(err,purchase){
 			if (err)
 				res.send(err);
-			req.json(purchase);
+			res.json(purchase);
 		});
 	})
 
