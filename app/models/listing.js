@@ -25,5 +25,8 @@ var ListingSchema = new mongoose.Schema({
     	name : String
     }]
 });
-
+//rates half, full, week, month
+// make separate for each rate
+// add about
+// add boolean active
 module.exports = mongoose.model('Listing', ListingSchema);

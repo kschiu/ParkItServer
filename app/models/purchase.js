@@ -32,5 +32,5 @@ var PurchaseSchema = new mongoose.Schema({
         required : true
     }
 });
-
+//Need to make logic to charge card, remove listing
 module.exports = mongoose.model('Purchase', PurchaseSchema);

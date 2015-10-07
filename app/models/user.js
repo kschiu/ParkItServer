@@ -20,11 +20,11 @@ var UserSchema   = new mongoose.Schema({
     		required : true
     	},
     	expiration_month : {
-    		type : Number,
+    		type : String,
     		required : true
     	},
     	expiration_year : {
-    		type : Number,
+    		type : String,
     		required : true
     	},
     	holder_name : {

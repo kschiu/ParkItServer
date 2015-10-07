@@ -11,7 +11,6 @@ var Purchase   = require('./app/models/purchase');
 var Listing    = require('./app/models/listing');
 var Location   = require('./app/models/location');
 
-
 // configure app to use bodyParser() to
 // get the data from a POST
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -43,12 +42,20 @@ router.get('/', function(req, res) {
 // User Routes
 // =============================================================================
 router.route('/users')
+	.get(function(req,res){
+		User.find(function(err, u){
+			if (err)
+				res.send(err);
+			res.json(u);
+		});
+	})
+
 	.post(function(req,res){
 		var user = new User();
 		user.username = req.body.username;
 		user.password = req.body.password;
 		user.email = req.body.email;
-		user.payment = req.body.payment;
+		user.payments = req.body.payments;
 		user.pictures = req.body.pictures; 
 
 		user.save(function(err){
@@ -81,6 +88,7 @@ router.route('/locations')
 
 	.post(function(req,res){
 		var loc = new Location();
+		loc.user = req.body.user;
 		loc.address = req.body.address;
 		loc.city = req.body.city;
 		loc.state = req.body.state;
