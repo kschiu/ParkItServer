@@ -6,6 +6,7 @@ var express    = require('express');        // call express
 var app        = express();                 // define our app using express
 var bodyParser = require('body-parser');
 var mongoose   = require('mongoose');
+var cors       = require('cors');
 var User       = require('./app/models/user');
 var Purchase   = require('./app/models/purchase');
 var Listing    = require('./app/models/listing');
@@ -13,8 +14,10 @@ var Location   = require('./app/models/location');
 
 // configure app to use bodyParser() to
 // get the data from a POST
+// Enable CORS
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(cors());
 
 //Connect to remote mongolab DB
 mongoose.connect('mongodb://dev:development@ds051893.mongolab.com:51893/parkitdb');
@@ -30,9 +33,7 @@ var router = express.Router();              // get an instance of the express Ro
 // MIDDLEWARE
 // =============================================================================
 router.use(function(req, res, next){
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-	console.log("You've hit a route");
+    console.log("You've hit a route");
 	next(); //proceed to more routes
 });
 
@@ -95,15 +96,18 @@ router.route('/locations')
 		loc.city = req.body.city;
 		loc.state = req.body.state;
 		loc.zip_code = req.body.zip_code;
-		loc.indoor = req.body.indoor;
+		loc.min_to_campus = req.body.min_to_campus;
 		loc.num_cars = req.body.num_cars;
 		loc.car_type = req.body.car_type;
-		loc.reviews = req.body.reviews;
+		console.log(req.body);
 
 		loc.save(function(err){
-			if (err)
+			console.log(err);
+			if (err){
 				res.send(err);
-			res.json(loc);
+			} else {
+				res.send(loc);
+			};	
 		});
 	});
 
