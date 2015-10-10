@@ -9,10 +9,10 @@ var ListingSchema = new mongoose.Schema({
     	type : mongoose.Schema.ObjectId,
     	required : true
     },
-    price : {
-    	type : Number,
-    	required : true
-    },
+    half_day : Number,
+    full_day : Number,
+    week : Number,
+    month : Number, 
     startDateTime : {
     	type : Date,
     	required : true
@@ -21,12 +21,13 @@ var ListingSchema = new mongoose.Schema({
     	type : Date,
     	required : true
     },
-    pictures : [{
-    	name : String
-    }]
+    //inactive when purchased
+    active : {
+        type : Boolean,
+        required : true
+    },
+    about : String
 });
 //rates half, full, week, month
 // make separate for each rate
-// add about
-// add boolean active
 module.exports = mongoose.model('Listing', ListingSchema);

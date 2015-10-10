@@ -21,15 +21,20 @@ var LocationSchema = new mongoose.Schema({
         type : String,
         required : true
     },
-    indoor : { //type garage street 
-        type : Boolean,
+    //Garage, backyard, etc
+    spot_type : { 
+        type : String,
+        required : true
+    },
+    pictures : [{
+        name : String
+    }],
+    min_to_campus : {
+        type : Number,
         required : true
     },
     num_cars : Number,
-    car_type : String
+    car_type : Array,
 });
-// add minutes to campus
 // change suitable car types to lsit.
-// move picture here
-// has a user
 module.exports = mongoose.model('Location', LocationSchema);

@@ -30,6 +30,8 @@ var router = express.Router();              // get an instance of the express Ro
 // MIDDLEWARE
 // =============================================================================
 router.use(function(req, res, next){
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 	console.log("You've hit a route");
 	next(); //proceed to more routes
 });
@@ -101,7 +103,7 @@ router.route('/locations')
 		loc.save(function(err){
 			if (err)
 				res.send(err);
-			res.json({message: 'Location created.'});
+			res.json(loc);
 		});
 	});
 
