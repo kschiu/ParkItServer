@@ -62,9 +62,11 @@ router.route('/users')
 		user.pictures = req.body.pictures; 
 
 		user.save(function(err){
-			if (err)
+			if (err){
 				res.send(err);
-			res.json({message: 'User created.'});
+			}else{
+				res.json(user);
+			}
 		});
 	});
 
@@ -152,9 +154,11 @@ router.route('/listings')
 		listing.pictures = req.body.pictures;
 
 		listing.save(function(err){
-			if (err)
+			if (err){
 				res.send(err);
-			res.json({message: 'Listing created.'});
+			}else{
+				res.json(listing);
+			}
 		});
 	});
 
@@ -199,9 +203,11 @@ router.route('/purchases')
 		purchase.date = req.body.date;
 
 		purchase.save(function(err){
-			if (err)
+			if (err){
 				res.send(err);
-			res.json({message: 'Purchase created.'});
+			} else {
+				res.json(purchase);
+			}
 		});
 	});
 
