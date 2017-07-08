@@ -44,7 +44,7 @@ To create a different object, change the ending of the url from locations to use
 
 To connect to the DB:
 `
-mongo ds051893.mongolab.com:51893/parkitdb -u dev -p development
+mongo ds051893.mongolab.com:51893/parkitdb -u xxx -p xxx
 `
 Then view the documents in a collection (while in mongo):
 `
